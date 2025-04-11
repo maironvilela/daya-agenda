@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model Hospital {
+  id       String   @id @default(cuid())
+  name     String
+  address  Address  @relation(fields: [addressId], references: [id])
+  addressId String
+ 
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  street     String
+  number     String
+  complement String
+  neighborhood String
+  city       String
+  state      String
+  zipCode    String @map("zip_code") // Evita problemas com palavras reservadas no PostgreSQL
+
+  hospitals  Hospital[]
+
+
+}

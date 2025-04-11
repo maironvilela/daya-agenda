@@ -34,9 +34,12 @@ export default tseslint.config(
 
     rules: {
       "quotes": ["error", "single", { "avoidEscape": true }],
-       "no-unused-vars": "error",
+      //"no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true, "varsIgnorePattern": "^_.*" }],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
-      "semi": ['error', 'always']
+      "semi": ['error', 'always'],
+ 
 
     },
   },
